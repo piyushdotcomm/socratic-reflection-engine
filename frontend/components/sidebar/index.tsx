@@ -15,14 +15,14 @@ export function Sidebar() {
     useReflectionStore();
 
   return (
-    <aside className="w-72 min-h-screen bg-white border-r border-slate-200 flex flex-col p-6 gap-6">
+    <aside className="w-1/3 min-w-[320px] max-w-[420px] h-screen bg-editorial-bg-alt border-r border-editorial-border flex flex-col p-8 gap-8 shadow-[1px_0_3px_rgba(0,0,0,0.02)]">
       {/* Logo + title */}
       <div className="flex items-center gap-3">
-        <div className="bg-slate-900 text-white p-2 rounded-lg">
+        <div className="bg-editorial-accent text-editorial-bg p-2 rounded-sm shadow-sm">
           <Brain className="w-5 h-5" />
         </div>
         <div>
-          <h1 className="font-semibold text-slate-900 text-sm leading-tight">
+          <h1 className="font-serif font-medium text-editorial-text text-lg leading-tight tracking-tight">
             Socratic Reflection
           </h1>
         </div>
@@ -44,7 +44,7 @@ export function Sidebar() {
         <div className="space-y-3">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span className="text-xs text-slate-600 font-medium">
+            <span className="text-xs text-editorial-text-light font-medium">
               Session Active
             </span>
           </div>
@@ -69,7 +69,7 @@ export function Sidebar() {
           </Button>
         </div>
       ) : (
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-editorial-text-lighter">
           Configure your session above, then describe your project to begin.
         </p>
       )}
@@ -78,7 +78,7 @@ export function Sidebar() {
       <div className="mt-auto">
         <Link
           href="/history"
-          className="text-xs text-slate-400 hover:text-slate-600 underline underline-offset-2"
+          className="text-xs text-editorial-text-lighter hover:text-editorial-text-light underline underline-offset-2"
         >
           View session history →
         </Link>

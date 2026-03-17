@@ -21,7 +21,7 @@ export function AgeGroupSelector() {
 
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-slate-700">Age Group</label>
+      <label className="text-sm font-medium text-editorial-text-light">Age Group</label>
       <Select
         value={ageGroup}
         onValueChange={(value) => setAgeGroup(value as AgeGroup)}

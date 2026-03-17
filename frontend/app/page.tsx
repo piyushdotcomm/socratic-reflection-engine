@@ -5,7 +5,7 @@ import { ChatPanel } from "@/components/chat";
 
 export default function HomePage() {
   return (
-    <main className="flex h-screen overflow-hidden bg-slate-50">
+    <main className="flex h-screen overflow-hidden bg-editorial-bg">
       <Sidebar />
       <ChatPanel />
     </main>

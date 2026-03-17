@@ -19,10 +19,10 @@ export function MessageBubble({ message }: MessageBubbleProps) {
       {/* Avatar */}
       <div
         className={cn(
-          "flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center",
+          "flex-shrink-0 w-8 h-8 flex items-center justify-center mt-1 outline outline-1 outline-offset-2",
           isUser
-            ? "bg-slate-900 text-white"
-            : "bg-blue-100 text-blue-700"
+            ? "bg-editorial-text text-editorial-bg outline-editorial-border"
+            : "bg-editorial-bg-alt text-editorial-accent outline-editorial-border"
         )}
       >
         {isUser ? (
@@ -35,10 +35,10 @@ export function MessageBubble({ message }: MessageBubbleProps) {
       {/* Bubble */}
       <div
         className={cn(
-          "max-w-[75%] rounded-2xl px-4 py-3 text-sm leading-relaxed",
+          "max-w-[85%] px-5 py-4",
           isUser
-            ? "bg-slate-900 text-white rounded-tr-sm"
-            : "bg-white border border-slate-200 text-slate-800 rounded-tl-sm shadow-sm"
+            ? "bg-editorial-text text-editorial-bg font-sans text-sm tracking-wide shadow-md"
+            : "bg-transparent text-editorial-text font-serif text-[17px] leading-relaxed border-l-2 border-editorial-accent pl-5 py-2"
         )}
       >
         {message.content}

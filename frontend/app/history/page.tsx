@@ -26,23 +26,23 @@ export default function HistoryPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-slate-50 p-8">
+    <main className="min-h-screen bg-editorial-bg p-8">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <Link
             href="/"
-            className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-800 transition-colors"
+            className="flex items-center gap-2 text-sm text-editorial-text-lighter hover:text-editorial-text transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to chat
           </Link>
         </div>
 
-        <h1 className="text-2xl font-semibold text-slate-900 mb-2">
+        <h1 className="text-2xl font-semibold text-editorial-text mb-2">
           Session History
         </h1>
-        <p className="text-sm text-slate-500 mb-6">
+        <p className="text-sm text-editorial-text-lighter mb-6">
           Your 20 most recent reflection sessions.
         </p>
 
@@ -64,7 +64,7 @@ export default function HistoryPage() {
 
         {/* Empty state */}
         {!loading && !error && sessions.length === 0 && (
-          <div className="text-center py-12 text-slate-400">
+          <div className="text-center py-12 text-editorial-text-lighter">
             <p className="font-medium">No sessions yet</p>
             <p className="text-sm mt-1">
               Start a reflection session to see it here.
@@ -78,9 +78,9 @@ export default function HistoryPage() {
             {sessions.map((session) => (
               <div
                 key={session.session_id}
-                className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm"
+                className="bg-transparent border border-editorial-border rounded-xl p-4 shadow-sm"
               >
-                <p className="text-sm font-medium text-slate-800 line-clamp-2 mb-3">
+                <p className="text-sm font-medium text-editorial-text line-clamp-2 mb-3">
                   {session.project_type}
                 </p>
                 <div className="flex items-center justify-between">
@@ -92,7 +92,7 @@ export default function HistoryPage() {
                       {session.age_group}
                     </Badge>
                   </div>
-                  <div className="flex items-center gap-1 text-xs text-slate-400">
+                  <div className="flex items-center gap-1 text-xs text-editorial-text-lighter">
                     <Clock className="w-3 h-3" />
                     {new Date(session.created_at).toLocaleDateString()}
                   </div>

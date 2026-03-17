@@ -69,7 +69,7 @@ export function InputBar() {
   };
 
   return (
-    <div className="border-t border-slate-200 bg-white px-6 py-4">
+    <div className="border-t border-editorial-border bg-transparent px-6 py-4">
       <div className="max-w-3xl mx-auto flex gap-3 items-center">
         <Input
           value={input}
@@ -81,13 +81,13 @@ export function InputBar() {
               : "Type your response..."
           }
           disabled={isLoading}
-          className="flex-1 bg-slate-50 border-slate-200 focus-visible:ring-slate-400"
+          className="flex-1 bg-editorial-bg border-editorial-border focus-visible:ring-editorial-accent"
         />
         <Button
           onClick={() => void handleSend()}
           disabled={!input.trim() || isLoading}
           size="icon"
-          className="bg-slate-900 hover:bg-slate-700 shrink-0"
+          className="bg-editorial-text hover:bg-editorial-text-light shrink-0"
           aria-label="Send message"
         >
           <Send className="w-4 h-4" />
