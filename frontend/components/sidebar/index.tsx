@@ -15,14 +15,14 @@ export function Sidebar() {
     useReflectionStore();
 
   return (
-    <aside className="w-72 min-h-screen bg-bg-100 border-r border-bg-300 flex flex-col p-6 gap-6">
+    <aside className="w-72 min-h-screen bg-white border-r border-slate-200 flex flex-col p-6 gap-6">
       {/* Logo + title */}
       <div className="flex items-center gap-3">
-        <div className="bg-text-100 text-bg-0 p-2 rounded-lg">
+        <div className="bg-slate-900 text-white p-2 rounded-lg">
           <Brain className="w-5 h-5" />
         </div>
         <div>
-          <h1 className="font-semibold text-text-100 text-sm leading-tight">
+          <h1 className="font-semibold text-slate-900 text-sm leading-tight">
             Socratic Reflection
           </h1>
         </div>
@@ -44,7 +44,7 @@ export function Sidebar() {
         <div className="space-y-3">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span className="text-xs text-text-200 font-medium">
+            <span className="text-xs text-slate-600 font-medium">
               Session Active
             </span>
           </div>
@@ -69,7 +69,7 @@ export function Sidebar() {
           </Button>
         </div>
       ) : (
-        <p className="text-xs text-text-400">
+        <p className="text-xs text-slate-400">
           Configure your session above, then describe your project to begin.
         </p>
       )}
@@ -78,7 +78,7 @@ export function Sidebar() {
       <div className="mt-auto">
         <Link
           href="/history"
-          className="text-xs text-text-400 hover:text-text-200 underline underline-offset-2"
+          className="text-xs text-slate-400 hover:text-slate-600 underline underline-offset-2"
         >
           View session history →
         </Link>

@@ -8,7 +8,7 @@ export function ChatPanel() {
   const { error } = useReflectionStore();
 
   return (
-    <div className="flex flex-col flex-1 h-screen overflow-hidden bg-bg-0">
+    <div className="flex flex-col flex-1 h-screen overflow-hidden bg-slate-50">
       <ChatWindow />
       {error && (
         <div className="px-6 py-2 bg-red-50 border-t border-red-200">

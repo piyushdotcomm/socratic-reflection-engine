@@ -20,7 +20,7 @@ export function ProviderSelector() {
 
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-text-200">AI Provider</label>
+      <label className="text-sm font-medium text-slate-700">AI Provider</label>
       <Select
         value={provider}
         onValueChange={(value) => setProvider(value as LLMProvider)}
@@ -34,7 +34,7 @@ export function ProviderSelector() {
             <SelectItem key={p.value} value={p.value}>
               <div className="flex flex-col">
                 <span className="font-medium">{p.label}</span>
-                <span className="text-xs text-text-300">{p.model}</span>
+                <span className="text-xs text-slate-500">{p.model}</span>
               </div>
             </SelectItem>
           ))}
