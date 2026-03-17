@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+*.log
+
+# Environment
+.env
+backend/.env
+frontend/.env
+frontend/.env.local
+
+# Node (for future frontend)
+node_modules/
+.next/
+out/
+
+# Misc
+.DS_Store
+alembic/versions/*.py
+backend/alembic/versions/*.py
