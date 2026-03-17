@@ -10,6 +10,7 @@ export interface Message {
 }
 
 export interface StartSessionRequest {
+  user_id?: string;
   project_type: string;
   strategy: Strategy;
   age_group: AgeGroup;

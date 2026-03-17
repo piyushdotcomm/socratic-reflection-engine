@@ -8,12 +8,16 @@ from app.models import Session
 router = APIRouter(prefix="/sessions", tags=["Sessions"])
 
 
-@router.get("/", summary="List 20 most recent sessions")
-async def list_sessions(db: AsyncSession = Depends(get_db)) -> dict:
+@router.get("/", summary="List 20 most recent sessions (filtered by user_id if provided)")
+async def list_sessions(
+    user_id: str | None = None, db: AsyncSession = Depends(get_db)
+) -> dict:
     """Return the 20 most recently created reflection sessions."""
-    result = await db.execute(
-        select(Session).order_by(Session.created_at.desc()).limit(20)
-    )
+    query = select(Session).order_by(Session.created_at.desc()).limit(20)
+    if user_id:
+        query = query.filter(Session.user_id == user_id)
+        
+    result = await db.execute(query)
     sessions = result.scalars().all()
     return {
         "sessions": [

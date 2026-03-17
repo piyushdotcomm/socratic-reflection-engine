@@ -5,6 +5,7 @@ from datetime import datetime
 
 
 class StartSession(BaseModel):
+    user_id: Optional[str] = Field(None, max_length=50)
     project_type: str = Field(..., min_length=5, max_length=500)
     strategy: Literal["gibbs", "kolb", "socratic"]
     age_group: Optional[Literal["child", "teen", "adult"]] = "teen"

@@ -34,6 +34,7 @@ async def start_session(
     """
     try:
         session = Session(
+            user_id=body.user_id,
             project_type=body.project_type,
             strategy=body.strategy,
             age_group=body.age_group,

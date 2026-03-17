@@ -30,11 +30,21 @@ async function request<T>(
   return res.json() as Promise<T>;
 }
 
+export const getUserId = (): string => {
+  if (typeof window === 'undefined') return '';
+  let userId = localStorage.getItem('socratic_user_id');
+  if (!userId) {
+    userId = crypto.randomUUID();
+    localStorage.setItem('socratic_user_id', userId);
+  }
+  return userId;
+};
+
 export const api = {
   startSession: (body: StartSessionRequest): Promise<StartSessionResponse> =>
     request<StartSessionResponse>("/reflect/start", {
       method: "POST",
-      body: JSON.stringify(body),
+      body: JSON.stringify({ ...body, user_id: getUserId() }),
     }),
 
   respond: (body: RespondRequest): Promise<RespondResponse> =>
@@ -46,9 +56,12 @@ export const api = {
   getHistory: (sessionId: string): Promise<SessionHistory> =>
     request<SessionHistory>(`/reflect/history/${sessionId}`),
 
-  listSessions: (): Promise<{ sessions: SessionSummary[] }> =>
-    request<{ sessions: SessionSummary[] }>("/sessions/"),
-
+  listSessions: (): Promise<{ sessions: SessionSummary[] }> => {
+    const userId = getUserId();
+    const query = userId ? `?user_id=${userId}` : '';
+    return request<{ sessions: SessionSummary[] }>(`/sessions/${query}`);
+  },
+  
   listStrategies: (): Promise<StrategiesResponse> =>
     request<StrategiesResponse>("/strategies/"),
 };

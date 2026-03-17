@@ -10,6 +10,7 @@ class Session(Base):
     __tablename__ = "sessions"
 
     id: uuid.UUID = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    user_id: str = Column(String(50), nullable=True, index=True)
     project_type: str = Column(String(500), nullable=False)
     strategy: str = Column(String(50), nullable=False)
     age_group: str = Column(String(20), default="teen")
