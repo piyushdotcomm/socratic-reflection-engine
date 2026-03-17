@@ -31,7 +31,7 @@ interface ReflectionState {
 export const useReflectionStore = create<ReflectionState>((set) => ({
   strategy: "gibbs",
   ageGroup: "teen",
-  provider: "gemini",
+  provider: "featherless-120b",
   sessionId: null,
   messages: [],
   isLoading: false,
