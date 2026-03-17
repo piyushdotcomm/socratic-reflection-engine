@@ -25,7 +25,6 @@ export function Sidebar() {
           <h1 className="font-semibold text-slate-900 text-sm leading-tight">
             Socratic Reflection
           </h1>
-          <p className="text-xs text-slate-500">Sugar Labs · GSoC 2026</p>
         </div>
       </div>
 
