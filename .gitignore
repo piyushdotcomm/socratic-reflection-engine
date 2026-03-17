@@ -17,10 +17,13 @@ backend/.env
 frontend/.env
 frontend/.env.local
 
-# Node (for future frontend)
+# Node (frontend)
 node_modules/
 .next/
 out/
+frontend/.env.local
+frontend/.next/
+frontend/node_modules/
 
 # Misc
 .DS_Store
