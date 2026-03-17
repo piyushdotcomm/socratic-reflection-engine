@@ -27,5 +27,3 @@ frontend/node_modules/
 
 # Misc
 .DS_Store
-alembic/versions/*.py
-backend/alembic/versions/*.py
