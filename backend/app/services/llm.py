@@ -3,6 +3,7 @@ from typing import List, Dict
 
 import google.generativeai as genai
 from groq import Groq
+from openai import AsyncOpenAI
 
 from app.config import settings
 
@@ -57,12 +58,46 @@ async def get_groq_response(
         raise
 
 
+async def get_featherless_response(
+    messages: List[Dict[str, str]],
+    system_prompt: str,
+    model_name: str,
+) -> str:
+    """Call Featherless AI via OpenAI compatible endpoint."""
+    try:
+        client = AsyncOpenAI(
+            base_url="https://api.featherless.ai/v1",
+            api_key=settings.FEATHERLESS_API_KEY
+        )
+        formatted = [{"role": "system", "content": system_prompt}]
+        formatted += [
+            {"role": m["role"], "content": m["content"]}
+            for m in messages
+        ]
+        response = await client.chat.completions.create(
+            model=model_name,
+            messages=formatted,
+            max_tokens=1024,
+            temperature=0.7,
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        logger.error(f"Featherless API error for model {model_name}: {e}")
+        raise
+
+
 async def get_llm_response(
     messages: List[Dict[str, str]],
     system_prompt: str,
-    provider: str = "gemini",
+    provider: str = "featherless-120b",
 ) -> str:
     """Dispatch to the appropriate LLM provider."""
     if provider == "groq":
         return await get_groq_response(messages, system_prompt)
-    return await get_gemini_response(messages, system_prompt)
+    elif provider == "gemini":
+        return await get_gemini_response(messages, system_prompt)
+    elif provider == "featherless-20b":
+        return await get_featherless_response(messages, system_prompt, "gpt-oss-20b")
+    else:
+        # Default to 120b
+        return await get_featherless_response(messages, system_prompt, "gpt-oss-120b")

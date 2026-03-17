@@ -10,9 +10,11 @@ import {
 import { useReflectionStore } from "@/lib/store";
 import { LLMProvider } from "@/lib/types";
 
-const PROVIDERS: { value: LLMProvider; label: string; model: string }[] = [
-  { value: "gemini", label: "Google Gemini", model: "gemini-2.0-flash" },
-  { value: "groq", label: "Groq", model: "llama-3.3-70b" },
+const PROVIDERS: { value: LLMProvider; label: string; model: string; desc: string }[] = [
+  { value: "featherless-120b", label: "Featherless (Default)", model: "gpt-oss-120b", desc: "Deep reflection, complex cycles, adults" },
+  { value: "featherless-20b", label: "Featherless Fast", model: "gpt-oss-20b", desc: "Quick dialogue, teens/kids" },
+  { value: "groq", label: "Groq", model: "Llama 3.3 70B", desc: "Ultra-fast responses, best UX" },
+  { value: "gemini", label: "Google Gemini", model: "Gemini 2.0 Flash", desc: "Free tier, multimodal future" },
 ];
 
 export function ProviderSelector() {
@@ -31,10 +33,10 @@ export function ProviderSelector() {
         </SelectTrigger>
         <SelectContent>
           {PROVIDERS.map((p) => (
-            <SelectItem key={p.value} value={p.value}>
+            <SelectItem key={p.value} value={p.value} className="py-2">
               <div className="flex flex-col">
-                <span className="font-medium">{p.label}</span>
-                <span className="text-xs text-slate-500">{p.model}</span>
+                <span className="font-medium">{p.label} - {p.model}</span>
+                <span className="text-xs text-slate-500">{p.desc}</span>
               </div>
             </SelectItem>
           ))}

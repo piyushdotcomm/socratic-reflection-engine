@@ -1,6 +1,6 @@
 export type Strategy = "gibbs" | "kolb" | "socratic";
 export type AgeGroup = "child" | "teen" | "adult";
-export type LLMProvider = "gemini" | "groq";
+export type LLMProvider = "featherless-120b" | "featherless-20b" | "gemini" | "groq";
 export type MessageRole = "user" | "assistant";
 
 export interface Message {

@@ -14,7 +14,7 @@ class Session(Base):
     project_type: str = Column(String(500), nullable=False)
     strategy: str = Column(String(50), nullable=False)
     age_group: str = Column(String(20), default="teen")
-    llm_provider: str = Column(String(20), default="gemini")
+    llm_provider: str = Column(String(20), default="featherless-120b")
     created_at: datetime = Column(DateTime, default=datetime.utcnow, nullable=False)
 
     messages = relationship(

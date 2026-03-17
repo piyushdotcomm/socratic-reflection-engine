@@ -6,7 +6,8 @@ class Settings(BaseSettings):
     DATABASE_URL: str
     GEMINI_API_KEY: str
     GROQ_API_KEY: str
-    DEFAULT_LLM_PROVIDER: str = "gemini"
+    FEATHERLESS_API_KEY: str
+    DEFAULT_LLM_PROVIDER: str = "featherless-120b"
 
     model_config = {"env_file": ".env"}
 
