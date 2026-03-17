@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+sqlalchemy[asyncio]
+asyncpg
+pydantic
+pydantic-settings
+google-generativeai
+groq
+python-dotenv
+alembic
+psycopg2-binary
+httpx
+pytest
+pytest-asyncio
