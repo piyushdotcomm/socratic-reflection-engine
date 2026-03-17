@@ -21,7 +21,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
         className={cn(
           "flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center",
           isUser
-            ? "bg-slate-900 text-white"
+            ? "bg-text-100 text-bg-0"
             : "bg-blue-100 text-blue-700"
         )}
       >
@@ -37,8 +37,8 @@ export function MessageBubble({ message }: MessageBubbleProps) {
         className={cn(
           "max-w-[75%] rounded-2xl px-4 py-3 text-sm leading-relaxed",
           isUser
-            ? "bg-slate-900 text-white rounded-tr-sm"
-            : "bg-white border border-slate-200 text-slate-800 rounded-tl-sm shadow-sm"
+            ? "bg-text-100 text-bg-0 rounded-tr-sm"
+            : "bg-bg-100 border border-bg-300 text-text-200 rounded-tl-sm shadow-sm"
         )}
       >
         {message.content}

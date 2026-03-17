@@ -33,7 +33,7 @@ export function StrategySelector() {
 
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-slate-700">
+      <label className="text-sm font-medium text-text-200">
         Reflection Strategy
       </label>
       <Select
@@ -49,14 +49,14 @@ export function StrategySelector() {
             <SelectItem key={s.value} value={s.value}>
               <div className="flex flex-col">
                 <span className="font-medium">{s.label}</span>
-                <span className="text-xs text-slate-500">{s.description}</span>
+                <span className="text-xs text-text-300">{s.description}</span>
               </div>
             </SelectItem>
           ))}
         </SelectContent>
       </Select>
       {sessionId && (
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-text-400">
           Cannot change during active session
         </p>
       )}

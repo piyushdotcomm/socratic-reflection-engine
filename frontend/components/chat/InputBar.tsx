@@ -1,14 +1,10 @@
 "use client";
 
-import { useState, KeyboardEvent } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Send } from "lucide-react";
 import { useReflectionStore } from "@/lib/store";
 import { api } from "@/lib/api";
+import ClaudeChatInput, { PastedContent } from "@/components/ui/claude-style-chat-input";
 
 export function InputBar() {
-  const [input, setInput] = useState<string>("");
   const {
     sessionId,
     strategy,
@@ -24,19 +20,17 @@ export function InputBar() {
 
   const isFirstMessage = messages.length === 0;
 
-  const handleSend = async () => {
-    const trimmed = input.trim();
-    if (!trimmed || isLoading) return;
+  const handleClaudeSend = async (text: string) => {
+    if (!text || isLoading) return;
 
-    setInput("");
     setError(null);
     setLoading(true);
 
     try {
       if (isFirstMessage) {
-        addMessage({ role: "user", content: trimmed });
+        addMessage({ role: "user", content: text });
         const res = await api.startSession({
-          project_type: trimmed,
+          project_type: text,
           strategy,
           age_group: ageGroup,
           llm_provider: provider,
@@ -45,10 +39,10 @@ export function InputBar() {
         addMessage({ role: "assistant", content: res.opening_question });
       } else {
         if (!sessionId) return;
-        addMessage({ role: "user", content: trimmed });
+        addMessage({ role: "user", content: text });
         const res = await api.respond({
           session_id: sessionId,
-          content: trimmed,
+          content: text,
         });
         addMessage({ role: "assistant", content: res.response });
       }
@@ -61,37 +55,23 @@ export function InputBar() {
     }
   };
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      void handleSend();
-    }
-  };
-
   return (
-    <div className="border-t border-slate-200 bg-white px-6 py-4">
-      <div className="max-w-3xl mx-auto flex gap-3 items-center">
-        <Input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
+    <div className="px-6 py-4 flex flex-col items-center bg-transparent">
+      <div className="w-full max-w-3xl mx-auto">
+      <ClaudeChatInput
+          isLoading={isLoading}
           placeholder={
             isFirstMessage
               ? "Describe what you built or worked on today..."
-              : "Type your response..."
+              : "Type your reflection response..."
           }
-          disabled={isLoading}
-          className="flex-1 bg-slate-50 border-slate-200 focus-visible:ring-slate-400"
-        />
-        <Button
-          onClick={() => void handleSend()}
-          disabled={!input.trim() || isLoading}
-          size="icon"
-          className="bg-slate-900 hover:bg-slate-700 shrink-0"
-          aria-label="Send message"
-        >
-          <Send className="w-4 h-4" />
-        </Button>
+          onSendMessage={(data) => {
+             const textToProcess = [data.message, ...data.pastedContent.map((c: PastedContent) => c.content)].join('\n\n').trim();
+             if (textToProcess) {
+                void handleClaudeSend(textToProcess);
+             }
+          }}
+      />
       </div>
     </div>
   );
