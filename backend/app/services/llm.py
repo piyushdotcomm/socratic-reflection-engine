@@ -86,6 +86,33 @@ async def get_featherless_response(
         raise
 
 
+async def get_hf_inference_response(
+    messages: List[Dict[str, str]],
+    system_prompt: str,
+) -> str:
+    """Call HuggingFace Inference API with a fine-tuned LoRA adapter."""
+    try:
+        client = AsyncOpenAI(
+            base_url=f"https://api-inference.huggingface.co/models/{settings.HF_MODEL_ID}/v1",
+            api_key=settings.HF_API_KEY,
+        )
+        formatted = [{"role": "system", "content": system_prompt}]
+        formatted += [
+            {"role": m["role"], "content": m["content"]}
+            for m in messages
+        ]
+        response = await client.chat.completions.create(
+            model=settings.HF_MODEL_ID,
+            messages=formatted,
+            max_tokens=1024,
+            temperature=0.7,
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        logger.error(f"HuggingFace API error: {e}")
+        raise
+
+
 async def get_llm_response(
     messages: List[Dict[str, str]],
     system_prompt: str,
@@ -98,6 +125,8 @@ async def get_llm_response(
         return await get_gemini_response(messages, system_prompt)
     elif provider == "featherless-20b":
         return await get_featherless_response(messages, system_prompt, "gpt-oss-20b")
+    elif provider == "hf-lora":
+        return await get_hf_inference_response(messages, system_prompt)
     else:
         # Default to 120b
         return await get_featherless_response(messages, system_prompt, "gpt-oss-120b")

@@ -9,7 +9,7 @@ class StartSession(BaseModel):
     project_type: str = Field(..., min_length=5, max_length=500)
     strategy: Literal["gibbs", "kolb", "socratic", "5r"]
     age_group: Optional[Literal["child", "teen", "adult"]] = "teen"
-    llm_provider: Optional[Literal["featherless-120b", "featherless-20b", "gemini", "groq"]] = "featherless-120b"
+    llm_provider: Optional[Literal["featherless-120b", "featherless-20b", "gemini", "groq", "hf-lora"]] = "featherless-120b"
 
 
 class UserMessage(BaseModel):

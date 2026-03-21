@@ -7,6 +7,8 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str
     GROQ_API_KEY: str
     FEATHERLESS_API_KEY: str
+    HF_API_KEY: str = ""
+    HF_MODEL_ID: str = "piyushdotcomm/sugar-reflection-lora"
     DEFAULT_LLM_PROVIDER: str = "featherless-120b"
 
     model_config = {"env_file": ".env"}
