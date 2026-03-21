@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from app.framework_selector import FrameworkSelector
 
 router = APIRouter(prefix="/strategies", tags=["Strategies"])
 
@@ -33,4 +34,13 @@ async def list_strategies() -> dict:
                 "best_for": "Depth-adaptive reflection for any project type",
             },
         ]
+    }
+
+
+@router.get("/recommend", summary="Get recommended framework for an activity")
+async def recommend_framework(activity_type: str) -> dict:
+    """Return the recommended reflection framework for a given Sugar activity bundle ID."""
+    return {
+        "activity_type": activity_type,
+        "recommended_framework": FrameworkSelector.select(activity_type),
     }
