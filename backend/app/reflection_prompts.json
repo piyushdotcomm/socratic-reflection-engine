@@ -1,0 +1,29 @@
+{
+  "gibbs": [
+    "What did you do in this project?",
+    "How did you feel while making it?",
+    "What went well? What was hard?",
+    "Why did things go the way they did?",
+    "What would you do differently?",
+    "What will you try next?"
+  ],
+  "kolb": [
+    "What did you just create?",
+    "What did you notice while working on it?",
+    "What does this connect to that you already knew?",
+    "What's one thing you want to try next time?"
+  ],
+  "5r": [
+    "What happened in your project? Describe it simply.",
+    "How did you respond to what happened?",
+    "Have you experienced something like this before?",
+    "Why do you think it worked or didn't?",
+    "What would you do next time?"
+  ],
+  "socratic": [
+    "What exactly did you make?",
+    "Why did you choose to do it that way?",
+    "What surprised you most?",
+    "What would happen if you changed one part?"
+  ]
+}
