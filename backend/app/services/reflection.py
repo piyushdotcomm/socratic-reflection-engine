@@ -1,6 +1,7 @@
 import logging
 from typing import List, Dict
 
+from app.prompts.fiver import FIVER_SYSTEM_PROMPT
 from app.prompts.gibbs import GIBBS_SYSTEM_PROMPT
 from app.prompts.kolb import KOLB_SYSTEM_PROMPT
 from app.prompts.socratic import SOCRATIC_SYSTEM_PROMPT
@@ -12,6 +13,7 @@ STRATEGY_PROMPTS: Dict[str, str] = {
     "gibbs": GIBBS_SYSTEM_PROMPT,
     "kolb": KOLB_SYSTEM_PROMPT,
     "socratic": SOCRATIC_SYSTEM_PROMPT,
+    "5r": FIVER_SYSTEM_PROMPT,
 }
 
 
