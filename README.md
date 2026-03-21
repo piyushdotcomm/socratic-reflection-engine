@@ -22,6 +22,18 @@ The project is structured as a monorepo consisting of:
 - `frontend/`: A Next.js 15 App Router web application utilizing Tailwind CSS v4 and Zustand for state management.
 - `backend/`: A highly concurrent Python FastAPI backend using async PostgreSQL (`asyncpg`), SQLAlchemy over Alembic, and Pydantic v2.
 
+## Fine-Tuned Model
+
+The `hf-lora` provider loads `piyushdotcomm/sugar-reflection-lora`, a LoRA adapter fine-tuned on Mistral-7B-Instruct using 90+ synthetic reflection dialogues across the Gibbs, Kolb, and 5Rs frameworks. Set `llm_provider: "hf-lora"` in any request to use the fine-tuned model. Requires `HF_API_KEY` in `.env`.
+
+## Framework Auto-Selection
+
+`FrameworkSelector` maps Sugar activity bundle IDs to optimal reflection frameworks. Use `GET /strategies/recommend?activity_type=org.sugarlabs.MusicBlocks` to get the recommended framework for any activity automatically.
+
+## Offline Fallback
+
+All reflection routes fall back gracefully to a local JSON bundle (`reflection_prompts.json`) if the LLM provider is unreachable. No errors are thrown; the learner receives a preset question instead.
+
 ## Quickstart
 
 ### Prerequisites
