@@ -26,5 +26,11 @@ async def list_strategies() -> dict:
                 "description": "Open-ended questioning to deepen critical thinking",
                 "best_for": "Encouraging independent discovery and deeper thinking",
             },
+            {
+                "id": "5r",
+                "name": "5Rs Framework",
+                "description": "5-stage: Report, Respond, Relate, Reason, Reconstruct",
+                "best_for": "Depth-adaptive reflection for any project type",
+            },
         ]
     }
